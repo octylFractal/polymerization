@@ -61,6 +61,7 @@ public class NamedPointTest {
     void setterGivenNull() {
         assertAll(() -> {
             var ex = assertThrows(IllegalArgumentException.class, () -> NamedPoint.builder().name(null));
+            ex.printStackTrace();
             assertThat(ex.getMessage()).contains("'name' cannot be null");
         });
     }

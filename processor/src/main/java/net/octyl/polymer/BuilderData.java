@@ -72,7 +72,7 @@ public class BuilderData {
             recordType,
             builderClassName,
             builderClassName.topLevelClassName().peerClass(
-                "PolymerizeImpl" + String.join("_", builderClassName.simpleNames())
+                "PolymerizeImpl_" + String.join("$", builderClassName.simpleNames())
             ),
             components
         ), builderMethodIndex);

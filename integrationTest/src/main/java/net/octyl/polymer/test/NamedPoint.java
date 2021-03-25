@@ -22,7 +22,7 @@ import net.octyl.polymer.PolymerizeApi;
 
 public record NamedPoint(String name, int x, int y) {
     public static Builder builder() {
-        return new PolymerizeImplNamedPoint_Builder();
+        return new PolymerizeImpl_NamedPoint$Builder();
     }
 
     @PolymerizeApi

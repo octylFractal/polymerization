@@ -73,9 +73,9 @@ public class BasicPolymerizationProcessorTest {
 
         assertThat(compilation).succeededWithoutWarnings();
 
-        assertThat(compilation).generatedSourceFile("PolymerizeImplFoo_Builder")
+        assertThat(compilation).generatedSourceFile("PolymerizeImpl_Foo$Builder")
             .hasSourceEquivalentTo(JavaFileObjects.forSourceString(
-                "PolymerizeImplFoo_Builder",
+                "PolymerizeImpl_Foo$Builder",
                 // language=java
                 """
                 import java.lang.IllegalArgumentException;
@@ -91,7 +91,7 @@ public class BasicPolymerizationProcessorTest {
                     value = "net.octyl.polymer.PolymerizationProcessor",
                     date = "%s"
                 )
-                final class PolymerizeImplFoo_Builder implements Foo.Builder {
+                final class PolymerizeImpl_Foo$Builder implements Foo.Builder {
                   private String bar;
                   private Object bag;
                   private @Nullable String nullString;
@@ -178,9 +178,9 @@ public class BasicPolymerizationProcessorTest {
 
         assertThat(compilation).succeededWithoutWarnings();
 
-        assertThat(compilation).generatedSourceFile("PolymerizeImplFooBuilder")
+        assertThat(compilation).generatedSourceFile("PolymerizeImpl_FooBuilder")
             .hasSourceEquivalentTo(JavaFileObjects.forSourceString(
-                "PolymerizeImplFooBuilder",
+                "PolymerizeImpl_FooBuilder",
                 // language=java
                 """
                 import java.lang.IllegalArgumentException;
@@ -193,7 +193,7 @@ public class BasicPolymerizationProcessorTest {
                     value = "net.octyl.polymer.PolymerizationProcessor",
                     date = "%s"
                 )
-                final class PolymerizeImplFooBuilder implements FooBuilder {
+                final class PolymerizeImpl_FooBuilder implements FooBuilder {
                   private String bar;
 
                   @Override
@@ -244,9 +244,9 @@ public class BasicPolymerizationProcessorTest {
 
         assertThat(compilation).succeededWithoutWarnings();
 
-        assertThat(compilation).generatedSourceFile("PolymerizeImplFoo_MassivelyFunctionalCollatingPropertiesCombinerForFoo")
+        assertThat(compilation).generatedSourceFile("PolymerizeImpl_Foo$MassivelyFunctionalCollatingPropertiesCombinerForFoo")
             .hasSourceEquivalentTo(JavaFileObjects.forSourceString(
-                "PolymerizeImplFoo_Builder",
+                "PolymerizeImpl_Foo$MassivelyFunctionalCollatingPropertiesCombinerForFoo",
                 // language=java
                 """
                 import java.lang.IllegalArgumentException;
@@ -259,7 +259,7 @@ public class BasicPolymerizationProcessorTest {
                     value = "net.octyl.polymer.PolymerizationProcessor",
                     date = "%s"
                 )
-                final class PolymerizeImplFoo_MassivelyFunctionalCollatingPropertiesCombinerForFoo implements Foo.MassivelyFunctionalCollatingPropertiesCombinerForFoo {
+                final class PolymerizeImpl_Foo$MassivelyFunctionalCollatingPropertiesCombinerForFoo implements Foo.MassivelyFunctionalCollatingPropertiesCombinerForFoo {
                   private String bar;
 
                   @Override
