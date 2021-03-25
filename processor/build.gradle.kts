@@ -2,6 +2,13 @@ plugins {
     java
 }
 
+java {
+    withSourcesJar()
+    // no javadoc jar, the API isn't public
+}
+
+configureMavenPublication()
+
 dependencies {
     compileOnly("org.jetbrains:annotations:20.1.0")
 
