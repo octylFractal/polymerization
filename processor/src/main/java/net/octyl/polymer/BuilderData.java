@@ -40,6 +40,11 @@ import com.squareup.javapoet.TypeName;
 import org.jetbrains.annotations.Nullable;
 
 public class BuilderData {
+    private static final String PREFIX_JOINER
+        = System.getProperty("net.octyl.polymer.builder.prefix.joiner", "_");
+    private static final String INNER_CLASS_JOINER
+        = System.getProperty("net.octyl.polymer.builder.inner.joiner", "$");
+
     public static BuilderData derive(TypeElement builder) {
         var recordType = decodeAnnotations(builder);
         var builderClassName = TypeNameUtil.rawType(TypeName.get(builder.asType()));
@@ -72,7 +77,7 @@ public class BuilderData {
             recordType,
             builderClassName,
             builderClassName.topLevelClassName().peerClass(
-                "PolymerizeImpl_" + String.join("$", builderClassName.simpleNames())
+                "PolymerizeImpl" + PREFIX_JOINER + String.join(INNER_CLASS_JOINER, builderClassName.simpleNames())
             ),
             components
         ), builderMethodIndex);
