@@ -4,7 +4,6 @@ import javax.annotation.processing.Generated;
 import javax.annotation.processing.Processor;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import java.io.IOException;
@@ -80,12 +79,6 @@ public class PolymerizationProcessor extends BasicAnnotationProcessor {
             private void processElement(TypeElement builder) {
                 var builderData = BuilderData.derive(builder);
                 var recordType = builderData.info().recordType();
-                if (recordType.getKind() != ElementKind.RECORD) {
-                    throw new DiagnosableException(
-                        "PolymerizeApi target (" + recordType + ") is not a record",
-                        builder
-                    );
-                }
                 for (var component : recordType.getRecordComponents()) {
                     var matchingSetter = builderData.findSetter(component);
                     if (matchingSetter == null) {
@@ -124,8 +117,10 @@ public class PolymerizationProcessor extends BasicAnnotationProcessor {
                     .addSuperinterface(builderData.info().builderName());
 
                 for (var component : builderData.info().components()) {
+                    // Promote primtives to wrappers
                     spec.addField(
                         TypeName.get(component.element().asType())
+                            .box()
                             .annotated(component.element().getAnnotationMirrors()
                                 .stream()
                                 .map(AnnotationSpec::get)
@@ -179,8 +174,7 @@ public class PolymerizationProcessor extends BasicAnnotationProcessor {
                 var missingCollector = "$missing";
                 code.addStatement("$T $N = \"\"", String.class, missingCollector);
                 for (var component : builderData.info().components()) {
-                    if (component.nullableAnnotation() != null
-                        || component.element().asType().getKind().isPrimitive()) {
+                    if (component.nullableAnnotation() != null) {
                         continue;
                     }
                     code.beginControlFlow("if ($N == null)", component.name())

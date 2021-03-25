@@ -1,6 +1,7 @@
 package net.octyl.polymer;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.RecordComponentElement;
 import javax.lang.model.element.TypeElement;
@@ -83,9 +84,25 @@ public class BuilderData {
         if (!(resultValue instanceof TypeMirror typeMirror)) {
             throw new IllegalStateException("Not a type mirror: " + resultValue);
         }
-        return MoreElements.asType(MoreTypes.isTypeOf(Void.class, typeMirror)
-            ? element.getEnclosingElement()
-            : MoreTypes.asElement(typeMirror));
+        Element resultingElement;
+        if (MoreTypes.isTypeOf(Void.class, typeMirror)) {
+            resultingElement = element.getEnclosingElement();
+            if (resultingElement.getKind() != ElementKind.RECORD) {
+                throw new DiagnosableException(
+                    "Builder is not enclosed by a record, please specify using `@PolymerizeApi(result = ...)`",
+                    element
+                );
+            }
+        } else {
+            resultingElement = MoreTypes.asElement(typeMirror);
+            if (resultingElement.getKind() != ElementKind.RECORD) {
+                throw new DiagnosableException(
+                    "@PolymerizeApi's `result` type is not a record",
+                    element
+                );
+            }
+        }
+        return MoreElements.asType(resultingElement);
     }
 
     private final TypeElement builder;
