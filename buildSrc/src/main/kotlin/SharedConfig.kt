@@ -23,11 +23,11 @@ fun Project.configureMavenPublication() {
 
     configure<SigningExtension> {
         setRequired(Callable {
-            System.getProperty("SIGNING_REQUIRED")?.toBoolean() == true
+            System.getenv("SIGNING_REQUIRED")?.toBoolean() == true
         })
         useInMemoryPgpKeys(
-            System.getProperty("POLYMERIZATION_SIGNING_KEY"),
-            System.getProperty("POLYMERIZATION_SIGNING_PASSWORD")
+            System.getenv("POLYMERIZATION_SIGNING_KEY"),
+            System.getenv("POLYMERIZATION_SIGNING_PASSWORD")
         )
         sign(the<PublishingExtension>().publications)
     }
