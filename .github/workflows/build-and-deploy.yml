@@ -10,6 +10,8 @@ jobs:
       SIGNING_REQUIRED: true
       POLYMERIZATION_SIGNING_KEY: ${{ secrets.POLYMERIZATION_SIGNING_KEY }}
       POLYMERIZATION_SIGNING_PASSWORD: ${{ secrets.POLYMERIZATION_SIGNING_PASSWORD }}
+      ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.sonatypeUsername }}
+      ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.sonatypePassword }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 16
