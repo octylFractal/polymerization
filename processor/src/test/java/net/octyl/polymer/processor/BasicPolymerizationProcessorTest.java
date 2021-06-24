@@ -16,19 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
+package net.octyl.polymer.processor;
 
-import static com.google.testing.compile.CompilationSubject.assertThat;
-import static com.google.testing.compile.Compiler.javac;
-
+import com.google.testing.compile.JavaFileObjects;
+import org.junit.jupiter.api.Test;
 
 import javax.tools.JavaFileObject;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.google.testing.compile.JavaFileObjects;
-import org.junit.jupiter.api.Test;
+import static com.google.testing.compile.CompilationSubject.assertThat;
+import static com.google.testing.compile.Compiler.javac;
 
 public class BasicPolymerizationProcessorTest {
     private static final ZonedDateTime FORCED_DATE =
@@ -49,7 +48,7 @@ public class BasicPolymerizationProcessorTest {
             "Foo",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             import test.Nullable;
             record Foo(String bar, Object bag, @Nullable String nullString, int bazzes) {
                 @PolymerizeApi
@@ -88,7 +87,7 @@ public class BasicPolymerizationProcessorTest {
                 import test.Nullable;
 
                 @Generated(
-                    value = "net.octyl.polymer.PolymerizationProcessor",
+                    value = "net.octyl.polymer.processor.PolymerizationProcessor",
                     date = "%s"
                 )
                 final class PolymerizeImpl_Foo$Builder implements Foo.Builder {
@@ -163,7 +162,7 @@ public class BasicPolymerizationProcessorTest {
             "FooBuilder",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             @PolymerizeApi(result = Foo.class)
             interface FooBuilder {
                 FooBuilder bar(String value);
@@ -190,7 +189,7 @@ public class BasicPolymerizationProcessorTest {
                 import javax.annotation.processing.Generated;
 
                 @Generated(
-                    value = "net.octyl.polymer.PolymerizationProcessor",
+                    value = "net.octyl.polymer.processor.PolymerizationProcessor",
                     date = "%s"
                 )
                 final class PolymerizeImpl_FooBuilder implements FooBuilder {
@@ -227,7 +226,7 @@ public class BasicPolymerizationProcessorTest {
             "Foo",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             record Foo(String bar) {
                 @PolymerizeApi
                 interface MassivelyFunctionalCollatingPropertiesCombinerForFoo {
@@ -256,7 +255,7 @@ public class BasicPolymerizationProcessorTest {
                 import javax.annotation.processing.Generated;
 
                 @Generated(
-                    value = "net.octyl.polymer.PolymerizationProcessor",
+                    value = "net.octyl.polymer.processor.PolymerizationProcessor",
                     date = "%s"
                 )
                 final class PolymerizeImpl_Foo$MassivelyFunctionalCollatingPropertiesCombinerForFoo implements Foo.MassivelyFunctionalCollatingPropertiesCombinerForFoo {

@@ -3,15 +3,15 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:20.1.0")
+    compileOnly("org.jetbrains:annotations:21.0.1")
     compileOnly(project(":annotations"))
     annotationProcessor(project(":processor"))
 
-    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
-    testImplementation("com.google.truth:truth:1.1.2") {
+    testImplementation("com.google.truth:truth:1.1.3") {
         exclude(group = "junit")
     }
 }

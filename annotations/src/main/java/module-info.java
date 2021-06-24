@@ -16,23 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer.test;
-
-import net.octyl.polymer.annotations.PolymerizeApi;
-
-public record NamedPoint(String name, int x, int y) {
-    public static Builder builder() {
-        return new PolymerizeImpl_NamedPoint$Builder();
-    }
-
-    @PolymerizeApi
-    interface Builder {
-        Builder name(String value);
-
-        Builder x(int x);
-
-        Builder y(int y);
-
-        NamedPoint build();
-    }
+module net.octyl.polymer.annotations {
+    exports net.octyl.polymer.annotations;
+    requires java.base;
 }

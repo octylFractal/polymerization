@@ -24,7 +24,7 @@ Then, you can write something like:
 ```java
 record Point(int x, int y) {
     public static Builder builder() {
-        return new PolymerizeImplPoint_Builder();
+        return new PolymerizeImpl_Point$Builder();
     }
 
     @PolymerizeApi

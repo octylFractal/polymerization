@@ -14,10 +14,10 @@ jobs:
       ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.sonatypePassword }}
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 15
+      - name: Set up JDK 16
         uses: actions/setup-java@v1
         with:
-          java-version: 15
+          java-version: 16
       - name: Build with Gradle
         run: ./gradlew build -s
       - name: Deploy with Gradle

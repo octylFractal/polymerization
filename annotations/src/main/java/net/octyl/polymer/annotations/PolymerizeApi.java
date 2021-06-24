@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
+package net.octyl.polymer.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

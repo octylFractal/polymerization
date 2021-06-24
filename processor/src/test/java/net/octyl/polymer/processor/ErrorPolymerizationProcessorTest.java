@@ -16,14 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
-
-import static com.google.testing.compile.CompilationSubject.assertThat;
-import static com.google.testing.compile.Compiler.javac;
-
+package net.octyl.polymer.processor;
 
 import com.google.testing.compile.JavaFileObjects;
 import org.junit.jupiter.api.Test;
+
+import static com.google.testing.compile.CompilationSubject.assertThat;
+import static com.google.testing.compile.Compiler.javac;
 
 public class ErrorPolymerizationProcessorTest {
 
@@ -33,7 +32,7 @@ public class ErrorPolymerizationProcessorTest {
             "Foo",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             record Foo(String bar) {
                 @PolymerizeApi
                 interface Builder {
@@ -59,7 +58,7 @@ public class ErrorPolymerizationProcessorTest {
             "Foo",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             record Foo(String bar) {
                 @PolymerizeApi
                 interface Builder {
@@ -93,7 +92,7 @@ public class ErrorPolymerizationProcessorTest {
             "FooBuilder",
             // language=java
             """
-            import net.octyl.polymer.PolymerizeApi;
+            import net.octyl.polymer.annotations.PolymerizeApi;
             @PolymerizeApi
             interface FooBuilder {
                 FooBuilder bar(String value);

@@ -7,16 +7,21 @@ java {
     // no javadoc jar, the API isn't public
 }
 
+tasks.jar {
+    // TODO move to a real module once auto-common does
+    manifest.attributes("Automatic-Module-Name" to "net.octyl.polymer.processor")
+}
+
 configureMavenPublication()
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:20.1.0")
+    compileOnly("org.jetbrains:annotations:21.0.1")
 
-    val autoServiceVersion = "1.0-rc7"
+    val autoServiceVersion = "1.0"
     compileOnly("com.google.auto.service:auto-service-annotations:$autoServiceVersion")
     annotationProcessor("com.google.auto.service:auto-service:$autoServiceVersion")
 
-    implementation("com.google.auto:auto-common:0.11")
+    implementation("com.google.auto:auto-common:1.0.1")
 
     implementation("com.google.guava:guava:30.1.1-jre")
 
@@ -24,16 +29,17 @@ dependencies {
 
     implementation(project(":annotations"))
 
-    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
     testImplementation("com.google.testing.compile:compile-testing:0.19")
-    testImplementation("com.google.truth:truth:1.1.2") {
+    testImplementation("com.google.truth:truth:1.1.3") {
         exclude(group = "junit")
     }
 }
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs("--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED")
 }

@@ -16,7 +16,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
+package net.octyl.polymer.processor;
+
+import com.google.auto.common.BasicAnnotationProcessor;
+import com.google.auto.common.MoreElements;
+import com.google.auto.service.AutoService;
+import com.google.common.collect.ImmutableSetMultimap;
+import com.squareup.javapoet.AnnotationSpec;
+import com.squareup.javapoet.CodeBlock;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
+import net.octyl.polymer.annotations.PolymerizeApi;
+import net.octyl.polymer.processor.internal.BuilderData;
+import net.octyl.polymer.processor.internal.DiagnosableException;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.VisibleForTesting;
 
 import javax.annotation.processing.Generated;
 import javax.annotation.processing.Processor;
@@ -32,19 +48,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
-import com.google.auto.common.BasicAnnotationProcessor;
-import com.google.auto.common.MoreElements;
-import com.google.auto.service.AutoService;
-import com.google.common.collect.ImmutableSetMultimap;
-import com.squareup.javapoet.AnnotationSpec;
-import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.JavaFile;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeSpec;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.VisibleForTesting;
 
 @AutoService(Processor.class)
 public class PolymerizationProcessor extends BasicAnnotationProcessor {

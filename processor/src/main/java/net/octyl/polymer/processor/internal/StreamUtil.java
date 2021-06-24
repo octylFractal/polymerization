@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
+package net.octyl.polymer.processor.internal;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

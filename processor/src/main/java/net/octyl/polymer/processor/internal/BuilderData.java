@@ -16,17 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.octyl.polymer;
-
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.RecordComponentElement;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Stream;
+package net.octyl.polymer.processor.internal;
 
 import com.google.auto.common.AnnotationMirrors;
 import com.google.auto.common.MoreElements;
@@ -37,7 +27,18 @@ import com.google.common.collect.Multimaps;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
+import net.octyl.polymer.annotations.PolymerizeApi;
 import org.jetbrains.annotations.Nullable;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.RecordComponentElement;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class BuilderData {
     private static final String PREFIX_JOINER
